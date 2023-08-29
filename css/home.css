@@ -1,0 +1,70 @@
+body, p, h1, h3 {
+    margin: 0;
+    padding: 0px;
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+body {
+    padding: 40px;
+}
+
+.change-password-div {
+    position: absolute;
+    top: 5%;
+    right: 8%;
+    width: 300px;
+}
+
+#change-password, #change {
+    color: white;
+    width: 300px;
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    padding: 3px;
+    height: 35px;
+    width: 300px;
+    font-size: small;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s, border-width 0s;
+}
+
+#change:hover, #change-password:hover {
+    background-color: white;
+    color: blueviolet;
+    border-style: solid;
+    border-color: blueviolet;
+    border-width: 1px;
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 300px;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgb(160, 160, 160);
+    transition: background-color 0.2s, border-width 0s;
+}
+
+#change-password-hide {
+    margin-top: 20px;
+    padding: 20px;
+    font-size: large;
+    display: flex;
+    width: 320px;
+    flex-direction: column;
+    border: 2px solid gray;
+    border-radius: 10px;
+    visibility: hidden;
+}

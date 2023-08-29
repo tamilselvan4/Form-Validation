@@ -3,13 +3,12 @@
 <head>
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="login_style.css">
+    <link rel="stylesheet" href="css/login_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
         <div class="main-div">
             <div class="login-div">
                 
@@ -21,32 +20,31 @@
                                 Email
                             </label>
                             <label for="invalid-email" class="invalid" id="invalid-email"></label>
-                            <div class="alert-icon" id="email-alert"><img class="red-icon" src="i_icon.png" alt="!!" ></div>
+                            <div class="alert-icon" id="email-alert"><img class="red-icon" src="img/i_icon.png" alt="!!" ></div>
                         </div><br>
-                        <input class="input-text" onkeyup="keyUpFunction()" id="input-username" type="email" placeholder="Enter your email" required><br><br>
+                        <input class="input-text" onkeyup="keyUpFunctionMail()" id="input-username" type="email" placeholder="Enter your email" required><br><br>
                         <div class="label-div">
                             <label class="label-input" for="password">
                                 Password
                             </label>
                             <label for="invalid-password" class="invalid" id="invalid-password"></label>
-                            <div class="alert-icon" id="password-alert"><img class="red-icon" src="i_icon.png" alt="!!"></div>
+                            <div class="alert-icon" id="password-alert"><img class="red-icon" src="img/i_icon.png" alt="!!"></div>
                         </div><br>
-                        <input class="input-text-pass" onkeyup="keyUpFunction()" id="input-password" type="password" placeholder="&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;"><br>
+                        <input class="input-text-pass" onkeyup="keyUpFunctionPassword()" id="input-password" type="password" placeholder="&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;"><br>
                         <div class="remember-me-div">
                             <input type="checkbox" name="remember-me" id="remember-me">
                             <p class="remember-me">Remember for 30 days</p>
                             <a class="forgot-password" href="grid.html">Forgot password</a>
                         </div>
-                        <button class="button-sign-in" id="submit" onclick="validate()" >Sign in</button><br>
-                        <button class="button-google"><img class="google-logo" src="google.png" alt="" >Sign in with Google</button>
+                        <button type="submit" class="button-sign-in" id="submit" onclick="validate()" >Sign in</button><br>
+                        <button class="button-google"><img class="google-logo" src="img/google.png" alt="" >Sign in with Google</button>
                         <p class="dont-text">Don't have an account? <a class="link-sign-up" href="https://www.google.com/">Sign up</a></p>                  
                 </div>               
             </div>
             <div class="img-div">
-                <img class="login-img" src="login_img.png" alt="login Image" width="550px" >
+                <img class="login-img" src="img/login_img.png" alt="login Image" width="550px" >
             </div>
         </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
