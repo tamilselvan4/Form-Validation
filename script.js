@@ -60,12 +60,12 @@ function validate() {
 
     let existingUser;
     let flag2= -1;
-    if(storedUsers) {
-        localStorage.setItem("flag2", storedUsers.length);
+    if (storedUsers && storedUsers.length > 0) {
+        localStorage.setItem("flag2", storedUsers.length)
+    } else {
+        localStorage.setItem("flag2", '0')
     }
-    else {
-        localStorage.setItem("flag2", "0");
-    }
+    
     
     for (let i in storedUsers) {
         if(storedUsers[i].email == emailInput.value) {
@@ -107,9 +107,21 @@ function validate() {
             const updatedUsersJSON = JSON.stringify(existingUsers);
             localStorage.setItem('users', updatedUsersJSON);
 
-            window.location.href = "home.html";
+            loaddata();
         }
     }
+}
+
+function loaddata() {
+    var a = new XMLHttpRequest();
+    a.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var responseData = this.responseText;
+            localStorage.setItem('responseData', responseData);
+            window.location.href = 'home.html';                    }
+        };
+    a.open("GET", "https://jsonplaceholder.typicode.com/todos/", true);
+    a.send();
 }
 
 
@@ -147,6 +159,13 @@ function changePassword() {
         alert('Enter correct Password');
     }
 
+}
+
+function displayData() {
+    if (localStorage.getItem('responseData')) {
+        var storedData = localStorage.getItem('responseData');
+        document.getElementById("displayData").innerHTML = storedData;
+    }
 }
 
 function keyUpFunctionMail() {
