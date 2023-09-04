@@ -58,6 +58,7 @@ input {
 }
 
 #change-password-hide {
+    background-color: antiquewhite;
     margin-top: 20px;
     padding: 20px;
     font-size: large;
@@ -67,4 +68,38 @@ input {
     border: 2px solid gray;
     border-radius: 10px;
     visibility: hidden;
+}
+
+#api-table {
+    width: 100%;
+}
+
+#api-table thead {
+    background-color: aquamarine;
+    height: 40px;
+}
+
+td {
+    height: 30px;
+    background-color: rgb(207, 250, 235);
+}
+
+.api-data-center {
+    text-align: center;
+}
+
+.api-data-left {
+    padding-left: 10px;
+}
+
+.editable input {
+    width: 90%;
+    padding: 5px;
+    margin: 0;
+    border: none;
+    outline: none;
+}
+
+::selection {
+    background-color: aquamarine;
 }
