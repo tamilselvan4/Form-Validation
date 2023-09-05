@@ -16,7 +16,7 @@ if (localStorage.getItem('responseData')) {
             row.innerHTML = `
                 <td class="api-data-center">${item.id}</td>
                 <td class="editable api-data-left" data-index="${index}">${item.title}</td>
-                <td class="editable api-data-center completed" data-index="${index}">${item.completed}</td>
+                <td class="editable api-data-center completed" data-index="${index}">${item.completed ? 'Yes' : 'No'}</td>
                 <td class="api-data-center">
                     <button class="btn-edit" data-index="${index}">Edit</button>
                     <button class="btn-delete" data-index="${index}">Delete</button>
@@ -57,15 +57,20 @@ if (localStorage.getItem('responseData')) {
             titleCell.removeAttribute('data-editing');
             titleCell.contentEditable = false;
         } else {
-            titleCell.setAttribute('data-editing', 'true');
-            titleCell.contentEditable = true;
-            titleCell.focus();
-            let newValue1 = titleCell.textContent;
-            titleCell.addEventListener("blur", function () {
-                storedDatas[index].title = newValue1;
+            const currentValue = titleCell.textContent;
+            const input = document.createElement('input');
+            input.value = currentValue;
+            titleCell.textContent = '';
+            titleCell.appendChild(input);
+
+            input.focus();
+            input.select();
+
+            input.addEventListener('blur', () => {
+                const newValue = input.value;
+                titleCell.textContent = newValue;
+                storedDatas[index].title = newValue;
                 localStorage.setItem("responseData", JSON.stringify(storedDatas));
-                title.contentEditable = false;
-                displayApiData();
             });
         }
         localStorage.setItem('responseData', JSON.stringify(storedDatas));
@@ -84,9 +89,13 @@ if (localStorage.getItem('responseData')) {
 }
 
 function makeVisible() {
-
     let change = document.getElementById('change-password-hide');
-    change.style.display = 'flex';
+    if (change.style.display == 'flex') {
+        change.style.display = 'none';
+    }
+    else {
+        change.style.display = 'flex';
+    }
 }
 
 function changePassword() {
