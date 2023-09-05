@@ -14,10 +14,10 @@ if (localStorage.getItem('responseData')) {
         storedDatas.forEach((item, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td class="api-data-center">${item.id}</td>
-                <td class="editable api-data-left" data-index="${index}">${item.title}</td>
-                <td class="editable api-data-center completed" data-index="${index}">${item.completed ? 'Yes' : 'No'}</td>
-                <td class="api-data-center">
+                <td >${item.id}</td>
+                <td class="editable" data-index="${index}">${item.title}</td>
+                <td class="editable" data-index="${index}">${item.completed ? 'Yes' : 'No'}</td>
+                <td >
                     <button class="btn-edit" data-index="${index}">Edit</button>
                     <button class="btn-delete" data-index="${index}">Delete</button>
                 </td>
@@ -44,36 +44,24 @@ if (localStorage.getItem('responseData')) {
 
     function editRow(index) {
         const titleCell = document.querySelector(`.editable[data-index="${index}"]`);
-        const newValue = titleCell.textContent;
+        const completedCell = document.querySelector(`.editable[data-index="${index}"]`);
     
         let storedDatas = JSON.parse(localStorage.getItem('responseData')) || apiData;
     
-        const isEditing = titleCell.getAttribute('data-editing') === 'true';
-    
-        if (isEditing) {
+        const currentTitleValue = titleCell.textContent;
+        const input = document.createElement('input');
+        input.value = currentTitleValue;
+        titleCell.textContent = '';
+        titleCell.appendChild(input);
+
+        input.focus();
+
+        input.addEventListener('blur', () => {
+            const newValue = input.value;
+            titleCell.textContent = newValue;
             storedDatas[index].title = newValue;
-            localStorage.setItem('responseData', JSON.stringify(storedDatas));
-            displayApiData();
-            titleCell.removeAttribute('data-editing');
-            titleCell.contentEditable = false;
-        } else {
-            const currentValue = titleCell.textContent;
-            const input = document.createElement('input');
-            input.value = currentValue;
-            titleCell.textContent = '';
-            titleCell.appendChild(input);
-
-            input.focus();
-            input.select();
-
-            input.addEventListener('blur', () => {
-                const newValue = input.value;
-                titleCell.textContent = newValue;
-                storedDatas[index].title = newValue;
-                localStorage.setItem("responseData", JSON.stringify(storedDatas));
-            });
-        }
-        localStorage.setItem('responseData', JSON.stringify(storedDatas));
+            localStorage.setItem("responseData", JSON.stringify(storedDatas));
+        });
     }
     
     function deleteRow(index) {
