@@ -22,7 +22,7 @@
                             <label for="invalid-email" class="invalid" id="invalid-email"></label>
                             <div class="alert-icon" id="email-alert"><img class="red-icon" src="../img/i_icon.png" alt="!!" ></div>
                         </div><br>
-                        <input class="input-text" onkeyup = "keyUpFunctionMail()" submit="getMail()" id="input-username" type="email" placeholder="Enter your email" required><br><br>
+                        <input class="input-text" onkeyup = "keyUpFunctionMail()" onchange="getMail(event)"  id="input-username" type="email" placeholder="Enter your email" required><br><br>
                         <div class="label-div">
                             <label class="label-input" for="password">
                                 Password
@@ -30,7 +30,7 @@
                             <label for="invalid-password" class="invalid" id="invalid-password"></label>
                             <div class="alert-icon" id="password-alert"><img class="red-icon" src="../img/i_icon.png" alt="!!"></div>
                         </div><br>
-                        <input class="input-text-pass" onkeyup="keyUpFunctionPassword()" id="input-password" type="password" placeholder="&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;"><br>
+                        <input class="input-text-pass" onkeyup="keyUpFunctionPassword()" onchange="getPassword(event)" id="input-password" type="password" placeholder="&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;&#183;"><br>
                         <div class="remember-me-div">
                             <input type="checkbox" name="remember-me" id="remember-me">
                             <p class="remember-me">Remember for 30 days</p>

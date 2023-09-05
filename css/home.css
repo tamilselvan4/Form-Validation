@@ -67,21 +67,18 @@ input {
     flex-direction: column;
     border: 2px solid gray;
     border-radius: 10px;
-    visibility: hidden;
+    display: none;
 }
 
 #api-table {
     width: 100%;
 }
 
-#api-table thead {
+#table th {
     background-color: aquamarine;
     height: 40px;
-}
-
-td {
-    height: 30px;
-    background-color: rgb(207, 250, 235);
+    border: 1px solid white;
+    text-transform: capitalize;
 }
 
 .api-data-center {
@@ -106,4 +103,49 @@ td {
 
 ::selection {
     background-color: aquamarine;
+}
+
+
+#table{
+    
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#table tr, #table td{
+    height: 30px;
+    background-color: rgb(207, 250, 235);
+    padding: 8px;
+    border: solid 1px white;
+}
+
+#table td:first-child{
+    text-align: center;
+}
+#table td:nth-child(2){
+    text-align: center;
+}
+#table td:nth-child(3){
+    display: flex;
+    border: none;
+}
+
+
+ #table .titlediv{
+   width: 85%;
+}
+
+.button_div{
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+button{
+    width: 60px;
+}
+
+.title {
+    padding: 10px;
 }

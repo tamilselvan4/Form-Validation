@@ -1,57 +1,65 @@
-let user = [];
+let user = [
+];
+
+let emailInput;
+let passwordInput
+
+function getMail(event) {
+    emailInput = event.target.value;
+}
+
+function getPassword(event) {
+    passwordInput = event.target.value
+}
 
 function validate() {
-
-    function getMail(event) {
-        const emailInput = event.target.value
-    }
-    const emailInput = document.getElementById('input-username');
-    const passwordInput = document.getElementById('input-password');
-    const emailAlert = document.getElementById('email-alert');
-    const passwordAlert = document.getElementById('password-alert');
-    const invalidEmail = document.getElementById('invalid-email');
-    const invalidPassword = document.getElementById('invalid-password');
+    let emailInput1 = document.getElementById('input-username');
+    let passwordInput1 = document.getElementById('input-password');
+    let emailAlert = document.getElementById('email-alert');
+    let passwordAlert = document.getElementById('password-alert');
+    let invalidEmail = document.getElementById('invalid-email');
+    let invalidPassword = document.getElementById('invalid-password');
     
     let flag = 0;
 
-    if (!emailInput.value) {
+    if (!emailInput) {
         emailAlert.style.display = 'inline';
-        emailInput.style.borderColor = "red";
+        emailInput1.style.borderColor = "red";
         invalidEmail.innerHTML = "*enter the email";
     }
     
     else {         
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        if (!emailPattern.test(emailInput.value)) {
+        if (!emailPattern.test(emailInput)) {
             emailAlert.style.display = 'inline';
-            emailInput.style.borderColor = "red";
+            emailInput1.style.borderColor = "red";
             invalidEmail.innerHTML = "*enter valid email";
         }
 
         else {
             emailAlert.style.display = 'none';
-            emailInput.style.borderColor = "rgb(160, 160, 160)";
+            emailInput1.style.borderColor = "rgb(160, 160, 160)";
             invalidEmail.innerHTML = "";
         }
     }
 
-    if (!passwordInput.value) {
+    if (!passwordInput) {
         passwordAlert.style.display = 'inline';
-        passwordInput.style.borderColor = "red";
+        passwordInput1.style.borderColor = "red";
         invalidPassword.innerHTML = "*enter the password";
         return;
     }
 
-    if (passwordInput.value.length < 5) {
+    if (passwordInput.length < 5) {
         passwordAlert.style.display = 'inline';
-        passwordInput.style.borderColor = "red";
+        passwordInput1.style.borderColor = "red";
         invalidPassword.innerHTML = "*enter atleast 5 characters";
         return;
     } 
     
     else {
         passwordAlert.style.display = 'none';
-        passwordInput.style.borderColor = "rgb(160, 160, 160)";
+        passwordInput1.style.borderColor = "rgb(160, 160, 160)";
         invalidPassword.innerHTML = "";
         flag = 1;
     }
@@ -69,16 +77,16 @@ function validate() {
     
     
     for (let i in storedUsers) {
-        if(storedUsers[i].email == emailInput.value) {
+        if(storedUsers[i].email == emailInput) {
             flag2 = i;
             localStorage.setItem("flag2", i);
-            existingUser = storedUsers.find(a => storedUsers[i].email == emailInput.value);
+            existingUser = storedUsers.find(a => storedUsers[i].email == emailInput);
         }
     }
 
     if (flag == 1) {
         if(existingUser){
-            if(storedUsers[flag2].password == passwordInput.value){
+            if(storedUsers[flag2].password == passwordInput){
                 window.location.href = "home.html";
             }
             else {
@@ -88,8 +96,8 @@ function validate() {
         }
         else {
             const newUser = {
-                email: emailInput.value,
-                password: passwordInput.value
+                email: emailInput,
+                password: passwordInput
             };
             
             const existingUsersJSON = localStorage.getItem('users');
