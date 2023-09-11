@@ -114,3 +114,34 @@ function changePassword() {
     }
 
 }
+
+let i = 0;
+
+function deleteAll() {
+    const deleteAll = document.getElementById('api-table');
+    const errorImg = document.getElementById('error-img');
+    deleteAll.style.display = 'none';
+    errorImg.style.visibility = 'visible';
+    localStorage.setItem("i", 1);
+
+}
+
+window.addEventListener('load', function() {
+    i = this.localStorage.getItem("i");
+    if(i == 1) {
+        updateData();
+        localStorage.setItem("i", 0);
+    }
+});
+
+function updateData() {
+    var a = new XMLHttpRequest();
+    a.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var responseData = this.responseText;
+            localStorage.setItem('responseData', responseData);
+            window.location.href = 'home.html';                    }
+        };
+    a.open("GET", "https://jsonplaceholder.typicode.com/todos/", true);
+    a.send();
+}

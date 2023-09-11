@@ -6,7 +6,7 @@ body, p, h1, h3 {
 }
 
 h1 {
-    margin-bottom: 30px;
+    margin-bottom: 70px;
 }
 
 body {
@@ -20,7 +20,7 @@ body {
     width: 300px;
 }
 
-#change-password, #change {
+#change-password, #change, #delete-all {
     color: black;
     width: 300px;
     background-color: aquamarine;
@@ -38,7 +38,7 @@ body {
     transition: background-color 0.2s, border-width 0s;
 }
 
-#change:hover, #change-password:hover {
+#change:hover, #change-password:hover, #delete-all:hover {
     background-color: white;
     color: black;
     border-style: solid;
@@ -134,7 +134,7 @@ button:hover {
 
 .btn-edit {
     background-color: rgb(142, 199, 255);
-    border-color: blue;
+    border: none;
 }
 
 .btn-edit:hover {
@@ -144,10 +144,14 @@ button:hover {
 
 .btn-delete {
     background-color: rgb(255, 133, 133);
-    border-color: red;
+    border: none;
 }
 
 .btn-delete:hover {
     background-color: rgb(253, 97, 97);
     border-color: red;
+}
+
+#error-img {
+    visibility: hidden;
 }
