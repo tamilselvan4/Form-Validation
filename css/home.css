@@ -6,7 +6,9 @@ body, p, h1, h3 {
 }
 
 h1 {
-    margin-bottom: 70px;
+    padding: 50px;
+    font-size: 40px;
+    margin-bottom: 40px;
 }
 
 body {
@@ -20,10 +22,9 @@ body {
     width: 300px;
 }
 
-#change-password, #change, #delete-all {
+#change-password, #change, #delete-all, #log-out-btn {
     color: black;
     width: 300px;
-    background-color: aquamarine;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,18 +33,51 @@ body {
     padding: 3px;
     height: 35px;
     width: 300px;
-    font-size: small;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 1;
+    outline: 0 solid transparent;
     cursor: pointer;
     margin-top: 15px;
     transition: background-color 0.2s, border-width 0s;
 }
 
-#change:hover, #change-password:hover, #delete-all:hover {
+#change-password, #change {
+    background-color: rgb(0, 156, 104);
+    color: white;
+    box-shadow: #00f99e 0 10px 20px -10px;
+}
+
+#log-out-btn {
+    background-color: #ff3636;
+    color: white;
+    box-shadow: #ff3636 0 10px 20px -10px;
+}
+
+#delete-all {
+    background-color: #5E5DF0;
+    color: white;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+}
+
+#change:hover, #change-password:hover, #delete-all:hover, #log-out-btn:hover {
     background-color: white;
-    color: black;
     border-style: solid;
-    border-color: aquamarine;
+    border-color: rgb(0, 156, 104);
     border-width: 1px;
+    color: rgb(0, 156, 104);
+}
+
+#delete-all:hover {
+    background-color: white;
+    border-color: #5E5DF0;
+    color: #5E5DF0;
+}
+
+#log-out-btn:hover {
+    background-color: white;
+    border-color: red;
+    color: red;
 }
 
 input {
@@ -65,13 +99,36 @@ input {
     display: flex;
     width: 320px;
     flex-direction: column;
-    border: 2px solid gray;
+    border: 1px solid gray;
+    box-shadow: black 0 10px 20px -10px;
     border-radius: 10px;
     display: none;
 }
 
+.hide-btn-div {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.hide-btn {
+    background-color: #ff3636;
+    border-color: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 20px;
+    color: white;
+    padding: 0px;
+}
+
+.hide-btn:hover {
+    background-color: white;
+    color: red;
+}
+
 th {
-    background-color: aquamarine;
+    background-color: rgb(0, 156, 104);
+    color: white;
     height: 40px;
     border: 1px solid white;
     text-transform: capitalize;
@@ -86,7 +143,7 @@ th {
 }
 
 ::selection {
-    background-color: aquamarine;
+    background-color: rgb(168, 251, 223);
 }
 
 #api-table{
@@ -96,7 +153,7 @@ th {
 
 tr, td{
     height: 30px;
-    background-color: rgb(207, 250, 235);
+    background-color: rgb(179, 255, 228);
     padding: 8px;
     border: solid 1px white;
 }
@@ -125,6 +182,7 @@ button {
     background-color: aquamarine;
     border: 1px solid rgb(0, 215, 144);
     border-radius: 5px;
+    transition: 0.15s;
     cursor: pointer;
 }
 
@@ -133,23 +191,45 @@ button:hover {
 }
 
 .btn-edit {
-    background-color: rgb(142, 199, 255);
-    border: none;
+    background: #5E5DF0;
+    border-radius: 999px;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 1;
+    outline: 0 solid transparent;
+    width: 60px;
+    border: 0;
 }
 
 .btn-edit:hover {
-    background-color: rgb(79, 167, 255);
-    border-color: blue;
+    border:1px solid rgb(79, 167, 255);
+    background-color: white;
+    color: blue;
 }
 
 .btn-delete {
-    background-color: rgb(255, 133, 133);
-    border: none;
-}
+    background: #ff3636;
+    border-radius: 999px;
+    box-shadow: #ff3636 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 1;
+    outline: 0 solid transparent;
+    width: 70px;
+    border: 0;
+  }
 
 .btn-delete:hover {
-    background-color: rgb(253, 97, 97);
-    border-color: red;
+    background-color: white;
+    border: 1px solid red;    
+    color: red;
 }
 
 #error-img {

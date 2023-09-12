@@ -13,9 +13,13 @@
     <h1 id="login-text">Login Successful</h1>
 
     <div class="change-password-div">
+        <button onclick="logOut()" id="log-out-btn">Log Out</button>
         <button onclick="makeVisible()" id="change-password">Change Password</button>
         <button onclick="deleteAll()" id="delete-all">Delete All</button>
         <div id="change-password-hide">
+            <div class="hide-btn-div">
+                <button class="hide-btn" onclick="makeVisible()">X</button>
+            </div>
             <label for="">Old Password</label>
             <input type="password" id="old-password">
             <label for="">New Password</label>

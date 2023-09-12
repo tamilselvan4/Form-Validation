@@ -87,7 +87,7 @@ function validate() {
     if (flag == 1) {
         if(existingUser){
             if(storedUsers[flag2].password == passwordInput){
-                window.location.href = "home.html";
+                window.location.replace("home.html");
             }
             else {
                 invalidPassword.innerHTML = "*enter correct password";
@@ -127,7 +127,7 @@ function updateData() {
         if (this.readyState == 4 && this.status == 200) {
             var responseData = this.responseText;
             localStorage.setItem('responseData', responseData);
-            window.location.href = 'home.html';                    }
+            window.location.replace("home.html");                   }
         };
     a.open("GET", "https://jsonplaceholder.typicode.com/todos/", true);
     a.send();

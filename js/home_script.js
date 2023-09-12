@@ -42,47 +42,104 @@ if (localStorage.getItem('responseData')) {
         }
     }
 
+    // function editRow(index) {
+    //     const titleCell = document.querySelector(`.editable[data-index="${index}"]`);
+    //     const completedCell = document.querySelector(`.editable[data-index="${index}"]`);
+    
+    //     let storedDatas = JSON.parse(localStorage.getItem('responseData')) || apiData;
+    
+    //     const currentTitleValue = titleCell.textContent;
+    //     const input = document.createElement('input');
+    //     input.value = currentTitleValue;
+    //     titleCell.textContent = '';
+    //     titleCell.appendChild(input);
+
+    //     input.focus();
+
+    //     input.addEventListener('blur', () => {
+    //         const newValue = input.value;
+    //         titleCell.textContent = newValue;
+    //         storedDatas[index].title = newValue;
+    //         localStorage.setItem("responseData", JSON.stringify(storedDatas));
+    //     });
+    // }
+    
     function editRow(index) {
         const titleCell = document.querySelector(`.editable[data-index="${index}"]`);
-        const completedCell = document.querySelector(`.editable[data-index="${index}"]`);
+        const input = titleCell.querySelector('input');
+        
+        if (!input) {
+            let storedDatas = JSON.parse(localStorage.getItem('responseData')) || apiData;
     
-        let storedDatas = JSON.parse(localStorage.getItem('responseData')) || apiData;
+            const currentTitleValue = titleCell.textContent;
+            const input = document.createElement('input');
+            input.value = currentTitleValue;
+            titleCell.textContent = '';
+            titleCell.appendChild(input);
     
-        const currentTitleValue = titleCell.textContent;
-        const input = document.createElement('input');
-        input.value = currentTitleValue;
-        titleCell.textContent = '';
-        titleCell.appendChild(input);
+            const editButton = document.querySelector(`.btn-edit[data-index="${index}"]`);
+            const deleteButton = document.querySelector(`.btn-delete[data-index="${index}"]`);
+            editButton.textContent = 'Save';
+            deleteButton.textContent = 'Cancel';
+    
+            input.focus();
+    
+            editButton.removeEventListener('click', () => {
+                editRow(index);
+            });
+    
+            editButton.addEventListener('click', () => {
+                const newValue = input.value;
+                titleCell.textContent = newValue;
+                storedDatas[index].title = newValue;
+                localStorage.setItem("responseData", JSON.stringify(storedDatas));
+    
+                editButton.textContent = 'Edit';
+                deleteButton.textContent = 'Delete'
+                editButton.addEventListener('click', () => {
+                    editRow(index);
+                });
+            });
 
-        input.focus();
-
-        input.addEventListener('blur', () => {
-            const newValue = input.value;
-            titleCell.textContent = newValue;
-            storedDatas[index].title = newValue;
-            localStorage.setItem("responseData", JSON.stringify(storedDatas));
-        });
+            deleteButton.addEventListener('click', () => {
+                if(deleteButton.textContent == 'Cancel') {
+                    titleCell.textContent = currentTitleValue;
+                    storedDatas[index].title = currentTitleValue;
+                    editButton.textContent = 'Edit';
+                    deleteButton.textContent = 'Delete';
+                }
+            });
+        }
     }
-    
+
     function deleteRow(index) {
-        let storedDatas = JSON.parse(localStorage.getItem('responseData')) || apiData;
+        const deleteButton = document.querySelector(`.btn-delete[data-index="${index}"]`);
+        if(deleteButton.textContent == 'Delete') {
+            let storedDatas = JSON.parse(localStorage.getItem('responseData')) || apiData;
 
-        storedDatas.splice(index, 1);
+            storedDatas.splice(index, 1);
 
-        localStorage.setItem('responseData', JSON.stringify(storedDatas));
+            localStorage.setItem('responseData', JSON.stringify(storedDatas));
 
-        displayApiData();
+            displayApiData();
+        }
+        
     }
     displayApiData();
 }
 
 function makeVisible() {
     let change = document.getElementById('change-password-hide');
+    const deleteAllButton = document.getElementById('delete-all');
+    const input = document.getElementById('old-password');
     if (change.style.display == 'flex') {
         change.style.display = 'none';
+        deleteAllButton.style.display = 'flex';
     }
     else {
         change.style.display = 'flex';
+        input.focus();
+        deleteAllButton.style.display = 'none';
     }
 }
 
@@ -99,6 +156,8 @@ function changePassword() {
     const matchedUser = storedUsers.find(user => storedUsers[flag2].password === enteredPassword);
 
     if (matchedUser) {
+        let change = document.getElementById('change-password-hide');
+        change.style.display = 'none';
         storedUsers[flag2].password = newPassword.value;
         localStorage.setItem('users', JSON.stringify(storedUsers));
         
@@ -106,10 +165,8 @@ function changePassword() {
 
         oldPassword.value = '';
         newPassword.value = '';
-
-        let change = document.getElementById('change-password-hide');
-        change.style.visibility = 'hidden';
-    } else {
+    } 
+    else {
         alert('Enter correct Password');
     }
 
@@ -120,10 +177,11 @@ let i = 0;
 function deleteAll() {
     const deleteAll = document.getElementById('api-table');
     const errorImg = document.getElementById('error-img');
+    const deleteAllButton = document.getElementById('delete-all');
     deleteAll.style.display = 'none';
     errorImg.style.visibility = 'visible';
     localStorage.setItem("i", 1);
-
+    deleteAllButton.style.display = 'none'
 }
 
 window.addEventListener('load', function() {
@@ -144,4 +202,8 @@ function updateData() {
         };
     a.open("GET", "https://jsonplaceholder.typicode.com/todos/", true);
     a.send();
+}
+
+function logOut() {
+    window.location.replace('login.html');
 }
